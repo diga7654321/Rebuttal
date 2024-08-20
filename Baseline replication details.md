@@ -1,0 +1,19 @@
+**EANN:** Utilises CNN to extract textual features (word embedding dimension of 32, with filter window sizes ranging from 1 to 4, totalling 20). Visual features are extracted using a pre-trained VGG-19 model (adjusted to a dimension of 32). The textual and visual features are concatenated to form a 64-dimensional representation. The fake news detector employs a fully connected layer (with a hidden layer of 64) and a Softmax function. The event discriminator comprises two fully connected layers (hidden layers of 64 and 32, respectively) using the Softmax function.
+
+**MVAE:** Utilises Bi-LSTM to extract textual features, while visual features are obtained from the FC7 layer of a pre-trained VGG-19 model and adjusted via a fully connected layer to match the dimension of the textual features. After concatenating the textual and visual features, a VAE generates the final multimodal representation.
+
+**MKEMN:** Utilises Bi-GRU to extract textual features, while visual features are extracted from a pre-trained VGG-19 model (feature dimension of 512 after the final pooling layer). Textual features, visual features, and knowledge embeddings are integrated via a multi-channel CNN. An event memory network extracts event-invariant features, and a deep neural network (DNN) performs classification using the Softmax function.
+
+**SAFE:** Utilises Text-CNN to extract textual features and a pre-trained image2sentence model to extract visual features. The similarity between textual and visual features is computed using a modified cosine similarity formula. In the experiments, the learning rate for textual and visual features is set at 1e-4, with 100 training iterations.
+
+**MCNN:** Utilises BERT to extract textual features with a hidden layer dimension of 256. Visual features are extracted using a pre-trained ResNet50 model, with the dimension of the final fully connected layer adjusted to 1024. Visual tampering features are extracted via ResNet50 and preprocessed using the ELA algorithm. Similarity is calculated through fully connected layers with shared parameters (dimension of 256) and cosine similarity.
+
+**MCAN:** Utilises BERT to extract textual features with a dimension of 256. Spatial domain visual features are extracted using VGG-19, while frequency domain visual features are extracted via CNN, both adjusted to a dimension of 256. A multi-layer Co-Attention mechanism is used for multimodal feature fusion, with a final output dimension of 256. Classification is performed using a fully connected layer and a Softmax function.
+
+**CAFE:** Utilises the BERT model to extract textual features with a dimension of 256. Visual features are extracted using the ResNet-34 model with a dimension of 512. Feature fusion is conducted using cross-modal alignment and modality-sharing layers, resulting in a fused feature dimension of 64¡Á64.
+
+**LIIMR:** Utilises BERT to extract textual features with a dimension of 256. Visual features are extracted using a pre-trained Faster R-CNN model with a dimension of 256. Feature fusion is achieved through Self-Attention and Multi-Head Attention mechanisms.
+
+**FND-CLIP:** Utilises BERT to extract textual features with a dimension of 768. Visual features are extracted using ResNet-101 with a dimension of 2048. The CLIP model is employed to extract cross-modal features from both text and images, with a feature dimension of 512. Cosine similarity is calculated between the text and image features output by CLIP, and the results are standardised before being used to adjust the fused features.
+
+**CMC:** Utilises BERT to extract textual features with a dimension of 768. Visual features are extracted using VGG-19 with a dimension of 4096. Cosine similarity is used to calculate the similarity between textual and visual features. Feature fusion is performed using the BLOCK bilinear pooling method, with an output feature dimension of 512.
